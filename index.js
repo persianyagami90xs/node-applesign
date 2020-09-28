@@ -101,9 +101,10 @@ class Applesign {
       await this.zipIPA();
     } catch (e) {
       process.exitCode = 1;
-      console.error(e);
+      throw e;
+    } finally {
+      await this.cleanup();
     }
-    await this.cleanup();
     return this;
   }
 
